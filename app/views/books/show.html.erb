@@ -1,15 +1,19 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
 <%= render 'list', user: @user,book: @booknew %>
 
 <h1>Book detail</h1>
-<p><%= image_tag @book.user.get_profile_image(100,100) %></p>
-<p><%= @book.user.name %></p>
+<p><%= image_tag @user.get_profile_image(100,100) %></p>
+<p><%= @user.name %></p>
 <!--本のタイトル-->
 <p><%= @book.title %></p>
 <!--オピニオン-->
 <p><%= @book.body %></p>
 <!--edit submit-->
 <!--destroy submit-->
-<% if @book.user == current_user %>
+<% if @user == current_user %>
     <%= link_to "Edit", edit_book_path(@book) %>
-    <%= link_to "Destroy", books_path(@book), method: :delete %>
+    <%= link_to "Destroy", book_path(@book), method: :delete %>
   <% end %>

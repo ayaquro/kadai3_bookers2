@@ -1,19 +1,24 @@
-<h1>User info</h1>
+<h2>User info</h2>
 <% if user.profile_image.attached? %>
 <p><%= image_tag user.get_profile_image(100,100) %></p>
 <% else %>
     <%= image_tag 'no_image', size: "100x100" %>
 <% end %>
-<th>name<%= user.name %></th>
-<th>introduction<%= user.introduction %></th>
+<tr><th>name<%= user.name %></th></tr>
+<tr><th>introduction<%= user.introduction %></th></tr>
 
+<% if @user == current_user %>
+<%= link_to "イラスト", edit_user_path(params[:id]) %>
+<% else %>
+<%= link_to "イラスト", user_path(current_user) %>
+<% end %>
 
-<h1>New Book</h1>
+<h2>New Book</h2>
 <%= form_with model: book do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
+  <label>Title</label><br>
+  <%= f.text_field :title %><br>
 
-  <h4>Opinion</h4>
+  <label>Opinion</label><br>
   <%= f.text_area :body %><br>
 
   <%= f.submit 'Create Book' %>
