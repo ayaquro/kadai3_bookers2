@@ -1,19 +1,28 @@
-<div>
-  <%= flash[:notice] %>
-</div>
+<div class="container">
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'list', user: @user,book: @booknew %>
+  </div>
 
-<%= render 'list', user: @user,book: @booknew %>
-
-<h1>Book detail</h1>
-<p><%= image_tag @user.get_profile_image(100,100) %></p>
-<p><%= @user.name %></p>
+<div class="col-md-8 offset-md-1">
+    <h2>Book detail</h2>
+<table class="table">
+  <tbody>
+      <tr>
+<td><%= image_tag @user.get_profile_image(100,100) %><br>
+    <%= link_to @user.name,user_path(@user) %></td>
 <!--本のタイトル-->
-<p><%= @book.title %></p>
+<td><%= link_to @book.title,book_path(@book) %></td>
 <!--オピニオン-->
-<p><%= @book.body %></p>
-<!--edit submit-->
-<!--destroy submit-->
+<td><%= @book.body %></td>
+
 <% if @user == current_user %>
-    <%= link_to "Edit", edit_book_path(@book) %>
-    <%= link_to "Destroy", book_path(@book), method: :delete %>
+<td><%= link_to "Edit", edit_book_path(@book), class: 'btn btn-success' %></td>
+<td><%= link_to "Destroy", book_path(@book), method: :delete, class: 'btn btn-sm btn-danger',  data:{ confirm: '本当に消しますか？' } %></td>
   <% end %>
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
