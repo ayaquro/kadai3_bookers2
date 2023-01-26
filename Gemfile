@@ -54,3 +54,4 @@ end
 
 
 gem 'net-smtp'
+gem 'devise'

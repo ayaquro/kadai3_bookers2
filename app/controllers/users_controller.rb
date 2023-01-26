@@ -8,10 +8,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    user_id = params[:id].to_i
-    unless user_id == current_user.id
-    redirect_to user_path(current_user)
-    end
     @user = User.find(params[:id])
   end
 
@@ -23,11 +19,9 @@ class UsersController < ApplicationController
 
   def update
     user_id = params[:id].to_i
-    unless user_id == current_user.id
+    unless user_id == current_user
     redirect_to user_path(current_user)
     end
-  end
-
     @user = User.find(params[:id])
     @user.update(user_params)
     if @user.save
@@ -47,7 +41,7 @@ class UsersController < ApplicationController
   def is_matching_login_user
     user_id = params[:id].to_i
     unless user_id == current_user.id
-      redirect_to books_path
+      redirect_to user_path(current_user)
     end
   end
 

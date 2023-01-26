@@ -1,11 +1,11 @@
 class Book < ApplicationRecord
   belongs_to :user
-  
+
   has_one_attached :profile_image
-  
+
   validates :title, presence: true
-  validates :body, presence: true, length: { maximum: 50 }
-  
+  validates :body, presence: true, length: { maximum: 200 }
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -13,6 +13,6 @@ class Book < ApplicationRecord
     end
     image
   end
-  
+
 
 end
