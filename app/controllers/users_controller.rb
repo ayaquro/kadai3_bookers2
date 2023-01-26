@@ -18,10 +18,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    user_id = params[:id].to_i
-    unless user_id == current_user
-    redirect_to user_path(current_user)
-    end
     @user = User.find(params[:id])
     @user.update(user_params)
     if @user.save
